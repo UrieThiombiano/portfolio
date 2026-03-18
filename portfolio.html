@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Urie Thiombiano — Portfolio Formateur IA</title>
+  <style>
+    :root {
+      --bg: #f7fafc;
+      --surface: #ffffff;
+      --surface-2: #f0f6ff;
+      --primary: #0b3a66;
+      --primary-2: #144f8b;
+      --accent: #1f8ef1;
+      --text: #142033;
+      --muted: #5c6b7a;
+      --border: #d8e2ee;
+      --success: #1f9d6c;
+      --shadow: 0 18px 50px rgba(11, 58, 102, 0.08);
+      --radius: 20px;
+      --radius-sm: 14px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+      background: linear-gradient(180deg, #f7fafc 0%, #eef5fb 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 72px 0;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 2.5vw, 2.5rem);
+      margin: 0 0 12px;
+      color: var(--primary);
+      line-height: 1.15;
+    }
+
+    .section-subtitle {
+      margin: 0 0 28px;
+      color: var(--muted);
+      max-width: 820px;
+      font-size: 1.02rem;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.84rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(14px);
+      background: rgba(247, 250, 252, 0.85);
+      border-bottom: 1px solid rgba(216, 226, 238, 0.85);
+    }
+
+    .nav-inner {
+      min-height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      font-weight: 800;
+      color: var(--primary);
+      font-size: 1.02rem;
+    }
+
+    .brand span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: flex-end;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .nav-links a:hover { color: var(--primary); }
+
+    .hero {
+      padding: 72px 0 52px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .hero-main {
+      padding: 34px;
+      background: radial-gradient(circle at top left, rgba(31,142,241,0.12), transparent 35%), #fff;
+    }
+
+    .hero h1 {
+      margin: 0 0 14px;
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      line-height: 1.05;
+      color: var(--primary);
+    }
+
+    .hero p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 760px;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 26px 0 26px;
+    }
+
+    .tag {
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: var(--surface-2);
+      border: 1px solid #cfe1f3;
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 0.93rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 18px;
+      border-radius: 14px;
+      font-weight: 700;
+      border: 1px solid transparent;
+      transition: 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-2);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--primary);
+      border-color: var(--border);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    .hero-side {
+      padding: 28px;
+      display: grid;
+      gap: 16px;
+      align-content: start;
+      background: linear-gradient(180deg, #ffffff 0%, #f6fbff 100%);
+    }
+
+    .stats {
+      display: grid;
+      gap: 14px;
+    }
+
+    .stat {
+      padding: 18px;
+      border-radius: 16px;
+      background: white;
+      border: 1px solid var(--border);
+    }
+
+    .stat strong {
+      display: block;
+      color: var(--primary);
+      font-size: 1.5rem;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .lead {
+      font-size: 1.05rem;
+      color: var(--muted);
+    }
+
+    .grid-2, .grid-3, .grid-4 {
+      display: grid;
+      gap: 20px;
+    }
+
+    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+    .about-card,
+    .edu-card,
+    .award-card,
+    .skill-card,
+    .project-card,
+    .training-card,
+    .method-card,
+    .contact-card,
+    .github-card,
+    .roadmap-card {
+      padding: 24px;
+    }
+
+    .about-card p:last-child,
+    .project-card p:last-child,
+    .training-card p:last-child,
+    .method-card p:last-child,
+    .contact-card p:last-child,
+    .github-card p:last-child,
+    .skill-card p:last-child { margin-bottom: 0; }
+
+    .bullet-list {
+      margin: 14px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .bullet-list li + li { margin-top: 8px; }
+
+    .edu-card h3,
+    .award-card h3,
+    .skill-card h3,
+    .project-card h3,
+    .training-card h3,
+    .method-card h3,
+    .roadmap-step h3,
+    .contact-card h3,
+    .github-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.15rem;
+      color: var(--primary);
+    }
+
+    .meta {
+      display: inline-block;
+      margin-bottom: 10px;
+      font-size: 0.9rem;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .muted { color: var(--muted); }
+
+    .skill-card {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .skill-pill-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .skill-pill {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: #f4f8fc;
+      border: 1px solid var(--border);
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .project-card {
+      display: grid;
+      gap: 12px;
+      height: 100%;
+    }
+
+    .project-row-title {
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .project-badge {
+      display: inline-flex;
+      width: fit-content;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: #edf6ff;
+      border: 1px solid #cde2f6;
+      color: var(--accent);
+      font-size: 0.84rem;
+      font-weight: 700;
+    }
+
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .project-tech span {
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: #f9fbfd;
+      border: 1px solid var(--border);
+      font-size: 0.85rem;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .roadmap {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .roadmap-step {
+      position: relative;
+      padding: 24px;
+      border-radius: 20px;
+      background: white;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .roadmap-step::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto auto 0;
+      width: 100%;
+      height: 6px;
+      background: linear-gradient(90deg, var(--accent), var(--primary));
+    }
+
+    .roadmap-step .level {
+      display: inline-block;
+      margin-bottom: 10px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: #eff7ff;
+      color: var(--accent);
+      font-weight: 800;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .roadmap-step ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .roadmap-step ul li + li { margin-top: 8px; }
+
+    .training-card {
+      height: 100%;
+      display: grid;
+      gap: 12px;
+    }
+
+    .training-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .training-meta span {
+      padding: 7px 10px;
+      background: #f4f8fc;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      font-size: 0.84rem;
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .method-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .method-item {
+      padding: 16px 18px;
+      border-radius: 16px;
+      background: #f8fbfe;
+      border: 1px solid var(--border);
+    }
+
+    .method-item strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--primary);
+    }
+
+    .github-card,
+    .contact-card {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      height: 100%;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 10px;
+      color: var(--muted);
+    }
+
+    .contact-list strong {
+      color: var(--primary);
+    }
+
+    .footer {
+      padding: 28px 0 40px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 1100px) {
+      .hero-grid,
+      .grid-4,
+      .grid-3,
+      .roadmap {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 840px) {
+      .nav-inner {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 14px 0;
+      }
+
+      .hero-grid,
+      .grid-2,
+      .grid-3,
+      .grid-4,
+      .roadmap {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-main,
+      .hero-side {
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="#accueil" class="brand">Urie <span>Thiombiano</span></a>
+      <nav class="nav-links">
+        <a href="#apropos">À propos</a>
+        <a href="#parcours">Parcours</a>
+        <a href="#certifications">Excellence</a>
+        <a href="#competences">Compétences</a>
+        <a href="#roadmap">Roadmap</a>
+        <a href="#projets">Projets</a>
+        <a href="#formations">Formations</a>
+        <a href="#methodologie">Méthodologie</a>
+        <a href="#github">GitHub</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="accueil">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="card hero-main">
+          <span class="eyebrow">Portfolio professionnel</span>
+          <h1>AI Engineer • Data Scientist • Formateur en technologies numériques</h1>
+          <p>
+            Spécialisé en intelligence artificielle, data science, NLP low-resource, vision par ordinateur,
+            systèmes intelligents et ingénierie des données, avec une approche pédagogique centrée sur la
+            pratique, les cas réels et les projets concrets.
+          </p>
+
+          <div class="hero-tags">
+            <span class="tag">Machine Learning</span>
+            <span class="tag">Deep Learning</span>
+            <span class="tag">NLP & GenAI</span>
+            <span class="tag">Computer Vision</span>
+            <span class="tag">Data Engineering</span>
+            <span class="tag">Systèmes de recommandation</span>
+          </div>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#projets">📁 Voir mes projets</a>
+            <a class="btn btn-secondary" href="#formations">📊 Voir mes formations</a>
+            <a class="btn btn-secondary" href="#parcours">🎓 Découvrir mon parcours scolaire</a>
+          </div>
+        </div>
+
+        <aside class="card hero-side">
+          <div>
+            <span class="eyebrow">Positionnement</span>
+            <p class="lead">
+              Profil hybride combinant excellence académique, compétences techniques concrètes et capacité à
+              transmettre des concepts complexes avec clarté et pragmatisme.
+            </p>
+          </div>
+
+          <div class="stats">
+            <div class="stat">
+              <strong>IA appliquée</strong>
+              <span class="muted">Machine Learning, Deep Learning, NLP, GenAI, vision et recommandation.</span>
+            </div>
+            <div class="stat">
+              <strong>Approche pratique</strong>
+              <span class="muted">Cours guidés par mini-projets, cas réels, implémentation et progression structurée.</span>
+            </div>
+            <div class="stat">
+              <strong>Impact concret</strong>
+              <span class="muted">Santé, agriculture, langues africaines, logement, mobilité intelligente.</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="apropos" class="section">
+      <div class="container">
+        <span class="eyebrow">À propos</span>
+        <h2 class="section-title">Un profil technique, structuré et orienté transmission</h2>
+        <p class="section-subtitle">
+          Mon objectif n’est pas seulement d’expliquer des notions. Je construis des formations où les apprenants
+          comprennent, manipulent, implémentent et voient directement l’utilité des concepts dans des problèmes
+          concrets du monde réel.
+        </p>
+
+        <div class="grid-2">
+          <div class="card about-card">
+            <h3>Ce que j’apporte comme formateur</h3>
+            <ul class="bullet-list">
+              <li>Une base scientifique solide issue d’un parcours exigeant en mathématiques, informatique et IA.</li>
+              <li>Une capacité à relier théorie, implémentation et cas d’usage réels.</li>
+              <li>Une pédagogie orientée pratique, progressive et adaptée au niveau des apprenants.</li>
+              <li>Une expérience sur des projets variés : santé, agriculture, recommandation, NLP, vision, produits numériques.</li>
+            </ul>
+          </div>
+
+          <div class="card about-card">
+            <h3>Ma vision de la formation</h3>
+            <ul class="bullet-list">
+              <li>Rendre l’intelligence artificielle accessible sans la simplifier à l’excès.</li>
+              <li>Faire comprendre la logique des algorithmes avant de passer au code.</li>
+              <li>Former à partir de projets concrets, de jeux de données réels et de mini-démonstrations.</li>
+              <li>Développer l’autonomie des apprenants jusqu’à la réalisation de projets exploitables.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="parcours" class="section">
+      <div class="container">
+        <span class="eyebrow">Parcours scolaire</span>
+        <h2 class="section-title">Une formation scientifique rigoureuse</h2>
+        <p class="section-subtitle">
+          Un parcours structuré autour des mathématiques, de l’informatique et de l’intelligence artificielle, avec
+          un positionnement clair vers la recherche, l’innovation et l’application pratique.
+        </p>
+
+        <div class="grid-2">
+          <article class="card edu-card">
+            <span class="meta">2025 – 2026</span>
+            <h3>Master 2 Data Science — orientation Computer Vision</h3>
+            <p class="muted">École Nationale des Sciences de l’Informatique (ENSI), Tunisie</p>
+            <p>Approfondissement en modélisation statistique, apprentissage avancé, deep learning et vision par ordinateur.</p>
+          </article>
+
+          <article class="card edu-card">
+            <span class="meta">2023 – aujourd’hui</span>
+            <h3>Cycle Ingénieur en Sciences de l’Informatique — spécialité IA</h3>
+            <p class="muted">École Nationale des Sciences de l’Informatique (ENSI), Tunisie</p>
+            <p>Formation avancée en algorithmique, machine learning, deep learning, optimisation et systèmes intelligents.</p>
+          </article>
+
+          <article class="card edu-card">
+            <span class="meta">2021 – 2023</span>
+            <h3>Classes préparatoires Mathématiques – Physique</h3>
+            <p class="muted">Institut Préparatoire aux Études d’Ingénieurs, Tunisie</p>
+            <p>Formation intensive en analyse, algèbre, probabilités, physique théorique et modélisation mathématique.</p>
+          </article>
+
+          <article class="card edu-card">
+            <span class="meta">2021</span>
+            <h3>Baccalauréat Sciences Expérimentales</h3>
+            <p class="muted">Collège Horizon International, Burkina Faso</p>
+            <p>Mention Très Bien — major national toutes séries confondues.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="certifications" class="section">
+      <div class="container">
+        <span class="eyebrow">Certifications & excellence académique</span>
+        <h2 class="section-title">Des distinctions qui témoignent d’un niveau d’exigence élevé</h2>
+        <p class="section-subtitle">
+          Au-delà des compétences techniques, mon parcours est marqué par des reconnaissances académiques fortes,
+          qui reflètent la rigueur, la discipline et la capacité à performer dans des environnements compétitifs.
+        </p>
+
+        <div class="grid-4">
+          <article class="card award-card">
+            <span class="meta">2026</span>
+            <h3>Lauréat du programme Master d’Excellence CITADEL</h3>
+            <p class="muted">Sélection sur excellence pour un parcours de haut niveau lié à l’IA et aux environnements low-resource.</p>
+          </article>
+
+          <article class="card award-card">
+            <span class="meta">2023</span>
+            <h3>Lauréat du concours national d’entrée aux cycles ingénieurs</h3>
+            <p class="muted">Réussite à un concours très sélectif en Tunisie, ouvrant l’accès au cycle ingénieur en informatique.</p>
+          </article>
+
+          <article class="card award-card">
+            <span class="meta">2021</span>
+            <h3>Prix d’Excellence du Président du Burkina Faso</h3>
+            <p class="muted">Distinction obtenue en tant que major national au baccalauréat, toutes séries confondues.</p>
+          </article>
+
+          <article class="card award-card">
+            <span class="meta">Depuis 2021</span>
+            <h3>Bourse d’Excellence Burkina Faso – Tunisie</h3>
+            <p class="muted">Reconnaissance institutionnelle d’un parcours académique de haut niveau et d’un fort potentiel.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="competences" class="section">
+      <div class="container">
+        <span class="eyebrow">Compétences en intelligence artificielle</span>
+        <h2 class="section-title">Compétences théoriques et pratiques, expliquées de manière concrète</h2>
+        <p class="section-subtitle">
+          Les technologies que je maîtrise ne sont pas présentées ici comme une simple liste d’outils. Elles sont
+          organisées par familles de compétences, avec leur utilité concrète dans des problèmes réels.
+        </p>
+
+        <div class="grid-2">
+          <article class="card skill-card">
+            <h3>Machine Learning</h3>
+            <p>
+              Le machine learning permet de prédire, classer, regrouper ou analyser automatiquement des données.
+              C’est la base de nombreux systèmes de décision intelligents.
+            </p>
+            <div class="skill-pill-wrap">
+              <span class="skill-pill">Régression linéaire</span>
+              <span class="skill-pill">Régression logistique</span>
+              <span class="skill-pill">k-NN</span>
+              <span class="skill-pill">Arbres de décision</span>
+              <span class="skill-pill">Random Forest</span>
+              <span class="skill-pill">Clustering</span>
+              <span class="skill-pill">PCA</span>
+              <span class="skill-pill">GMM</span>
+            </div>
+            <p class="muted">Exemples concrets : prédiction de réadmission hospitalière, segmentation de profils, aide à la décision à partir de données.</p>
+          </article>
+
+          <article class="card skill-card">
+            <h3>Deep Learning avec TensorFlow</h3>
+            <p>
+              Le deep learning permet d’apprendre automatiquement des représentations complexes à partir d’images,
+              de textes ou d’autres données riches.
+            </p>
+            <div class="skill-pill-wrap">
+              <span class="skill-pill">Réseaux neuronaux</span>
+              <span class="skill-pill">CNN</span>
+              <span class="skill-pill">Apprentissage supervisé</span>
+              <span class="skill-pill">Classification avancée</span>
+              <span class="skill-pill">Analyse d’images</span>
+            </div>
+            <p class="muted">Exemples concrets : reconnaissance de formes, classification de données complexes, vision par ordinateur.</p>
+          </article>
+
+          <article class="card skill-card">
+            <h3>NLP & GenAI</h3>
+            <p>
+              Le NLP traite le langage humain. La GenAI permet de construire des systèmes capables de générer,
+              résumer, comprendre et exploiter du contenu de manière intelligente.
+            </p>
+            <div class="skill-pill-wrap">
+              <span class="skill-pill">Traitement de texte</span>
+              <span class="skill-pill">G2P</span>
+              <span class="skill-pill">Transformers</span>
+              <span class="skill-pill">Fine-Tuning</span>
+              <span class="skill-pill">RAG</span>
+              <span class="skill-pill">Agentic AI</span>
+            </div>
+            <ul class="bullet-list">
+              <li><strong>Fine-Tuning :</strong> adaptation d’un modèle existant à un besoin métier précis.</li>
+              <li><strong>RAG :</strong> combinaison d’un modèle IA avec une base documentaire pour répondre avec plus de précision.</li>
+              <li><strong>Agentic AI :</strong> systèmes capables de planifier, chercher des informations et exécuter des tâches de manière semi-autonome.</li>
+            </ul>
+          </article>
+
+          <article class="card skill-card">
+            <h3>Data Engineering & systèmes de données</h3>
+            <p>
+              L’IA ne repose pas uniquement sur les modèles. Elle dépend aussi de la collecte, de la circulation,
+              de la transformation et de la disponibilité des données.
+            </p>
+            <div class="skill-pill-wrap">
+              <span class="skill-pill">Pipelines de données</span>
+              <span class="skill-pill">Ingestion</span>
+              <span class="skill-pill">Transformation</span>
+              <span class="skill-pill">Traitement distribué</span>
+              <span class="skill-pill">Analyse à grande échelle</span>
+            </div>
+            <p class="muted">Exemples concrets : agriculture intelligente, flux de données massifs, préparation de données pour l’analyse et l’IA.</p>
+          </article>
+
+          <article class="card skill-card">
+            <h3>Systèmes de recommandation</h3>
+            <p>
+              Les systèmes de recommandation servent à proposer automatiquement les options les plus pertinentes à un utilisateur en fonction de son profil ou de son comportement.
+            </p>
+            <div class="skill-pill-wrap">
+              <span class="skill-pill">Scoring</span>
+              <span class="skill-pill">Ranking</span>
+              <span class="skill-pill">Personnalisation</span>
+              <span class="skill-pill">Matching</span>
+            </div>
+            <p class="muted">Exemples concrets : recommandations de logements, contenus, profils ou offres adaptées aux besoins des utilisateurs.</p>
+          </article>
+
+          <article class="card skill-card">
+            <h3>Compétences théoriques et pratiques</h3>
+            <p>
+              Mon profil associe une vraie base théorique et une capacité opérationnelle à construire des solutions.
+            </p>
+            <div class="skill-pill-wrap">
+              <span class="skill-pill">Probabilités</span>
+              <span class="skill-pill">Statistiques</span>
+              <span class="skill-pill">Optimisation</span>
+              <span class="skill-pill">Algèbre linéaire</span>
+              <span class="skill-pill">Évaluation de modèles</span>
+              <span class="skill-pill">Préparation de données</span>
+              <span class="skill-pill">Expérimentation</span>
+              <span class="skill-pill">Interprétation des résultats</span>
+            </div>
+            <p class="muted">Je suis capable d’expliquer les fondements mathématiques tout en guidant les apprenants vers des implémentations concrètes.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="roadmap" class="section">
+      <div class="container">
+        <span class="eyebrow">Roadmap visuelle des formations</span>
+        <h2 class="section-title">Une progression claire selon le niveau des apprenants</h2>
+        <p class="section-subtitle">
+          Cette roadmap montre comment structurer des formations cohérentes, progressives et directement exploitables,
+          depuis les bases jusqu’aux systèmes IA avancés.
+        </p>
+
+        <div class="roadmap">
+          <article class="roadmap-step">
+            <span class="level">Niveau 1 — Débutant</span>
+            <h3>Fondations</h3>
+            <ul>
+              <li>Initiation à Python pour la data et l’IA</li>
+              <li>Manipulation de données</li>
+              <li>Introduction au machine learning</li>
+              <li>Mini-projets simples de classification et régression</li>
+              <li>Objectif : comprendre la logique des algorithmes</li>
+            </ul>
+          </article>
+
+          <article class="roadmap-step">
+            <span class="level">Niveau 2 — Intermédiaire</span>
+            <h3>Modélisation & projets</h3>
+            <ul>
+              <li>Machine learning avancé</li>
+              <li>Clustering, réduction de dimension, évaluation</li>
+              <li>Deep learning avec TensorFlow</li>
+              <li>NLP de base et traitement de texte</li>
+              <li>Objectif : réaliser des projets applicatifs complets</li>
+            </ul>
+          </article>
+
+          <article class="roadmap-step">
+            <span class="level">Niveau 3 — Avancé</span>
+            <h3>IA moderne & systèmes intelligents</h3>
+            <ul>
+              <li>GenAI : RAG, fine-tuning, agentic AI</li>
+              <li>Data engineering et architecture de données</li>
+              <li>Systèmes de recommandation</li>
+              <li>Projet final complet orienté métier</li>
+              <li>Objectif : construire des solutions prêtes pour le terrain</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projets" class="section">
+      <div class="container">
+        <span class="eyebrow">Projets</span>
+        <h2 class="section-title">Des projets conçus autour de problèmes réels</h2>
+        <p class="section-subtitle">
+          Chaque projet présenté ci-dessous répond à une problématique concrète et montre ma capacité à relier
+          technologie, impact réel et mise en œuvre pratique.
+        </p>
+
+        <div class="grid-2">
+          <article class="card project-card">
+            <span class="project-badge">Projet de fin d’études — CITADEL</span>
+            <h3>NLP low-resource pour les langues africaines</h3>
+            <div>
+              <div class="project-row-title">Objectif réel</div>
+              <p>Permettre aux langues africaines d’être mieux prises en charge dans les technologies modernes : assistants vocaux, IA linguistique, outils éducatifs et systèmes de parole.</p>
+            </div>
+            <div>
+              <div class="project-row-title">Solution</div>
+              <p>Conception d’approches NLP pour des langues à faibles ressources, avec focus sur le G2P, la structuration de datasets linguistiques et l’étude de modèles robustes.</p>
+            </div>
+            <div>
+              <div class="project-row-title">Technologies utilisées</div>
+              <div class="project-tech"><span>Python</span><span>NLP</span><span>Transformers</span><span>G2P</span><span>Dataset Engineering</span></div>
+            </div>
+            <div>
+              <div class="project-row-title">Résultat</div>
+              <p>Base scientifique et technique pour des applications futures en NLP, speech technologies et IA multilingue appliquée à l’Afrique.</p>
+            </div>
+          </article>
+
+          <article class="card project-card">
+            <span class="project-badge">Computer Vision</span>
+            <h3>Analyse statistique des formes par descripteurs de Fourier</h3>
+            <div>
+              <div class="project-row-title">Objectif réel</div>
+              <p>Analyser automatiquement des formes pour des applications potentielles en biométrie, imagerie médicale et reconnaissance de motifs.</p>
+            </div>
+            <div>
+              <div class="project-row-title">Solution</div>
+              <p>Extraction de contours, calcul de descripteurs de Fourier invariants, réduction de dimension par PCA et modélisation par GMM.</p>
+            </div>
+            <div>
+              <div class="project-row-title">Technologies utilisées</div>
+              <div class="project-tech"><span>Python</span><span>OpenCV</span><span>PCA</span><span>GMM</span><span>Computer Vision</span></div>
+            </div>
+            <div>
+              <div class="project-row-title">Résultat</div>
+              <p>Pipeline complet de représentation et d’analyse de formes basé sur une approche mathématique robuste.</p>
+            </div>
+          </article>
+
+          <article class="card project-card">
+            <span class="project-badge">Data Mining — Santé</span>
+            <h3>Prédiction de réadmission hospitalière</h3>
+            <div>
+              <div class="project-row-title">Objectif réel</div>
+              <p>Aider les établissements de santé à identifier les patients à risque de réadmission afin d’améliorer la prise en charge et d’optimiser les ressources.</p>
+            </div>
+            <div>
+              <div class="project-row-title">Solution</div>
+              <p>Préparation des données médicales, sélection de variables pertinentes et entraînement de modèles de classification pour prédire les cas à risque.</p>
+            </div>
+            <div>
+              <div class="project-row-title">Technologies utilisées</div>
+              <div class="project-tech"><span>Python</span><span>Scikit-learn</span><span>Classification</span><span>Évaluation</span></div>
+            </div>
+            <div>
+              <div class="project-row-title">Résultat</div>
+              <p>Modèle d’aide à la décision permettant d’anticiper les situations critiques à partir des données disponibles.</p>
+            </div>
+          </article>
+
+          <article class="card project-card">
+            <span class="project-badge">Big Data — Agriculture</span>
+            <h3>Plateforme data pour l’agriculture moderne</h3>
+            <div>
+              <div class="project-row-title">Objectif réel</div>
+              <p>Améliorer les décisions agricoles grâce à l’exploitation de grands volumes de données provenant de différentes sources.</p>
+            </div>
+            <div>
+              <div class="project-row-title">Solution</div>
+              <p>Mise en place d’une logique d’ingestion, de traitement et d’analyse de données pour produire des indicateurs utiles à l’agriculture intelligente.</p>
+            </div>
+            <div>
+              <div class="project-row-title">Technologies utilisées</div>
+              <div class="project-tech"><span>Data Engineering</span><span>Pipelines</span><span>Analyse de données</span><span>Big Data</span></div>
+            </div>
+            <div>
+              <div class="project-row-title">Résultat</div>
+              <p>Architecture de travail orientée données pour soutenir une agriculture plus pilotée, réactive et informée.</p>
+            </div>
+          </article>
+
+          <article class="card project-card">
+            <span class="project-badge">Systèmes de recommandation</span>
+            <h3>Conception de moteurs de recommandation</h3>
+            <div>
+              <div class="project-row-title">Objectif réel</div>
+              <p>Proposer automatiquement les contenus, offres ou options les plus pertinentes selon le profil et les besoins d’un utilisateur.</p>
+            </div>
+            <div>
+              <div class="project-row-title">Solution</div>
+              <p>Travail sur la logique de scoring, le ranking et la personnalisation pour améliorer la pertinence des recommandations.</p>
+            </div>
+            <div>
+              <div class="project-row-title">Technologies utilisées</div>
+              <div class="project-tech"><span>Machine Learning</span><span>Scoring</span><span>Ranking</span><span>Matching</span></div>
+            </div>
+            <div>
+              <div class="project-row-title">Résultat</div>
+              <p>Mise en place d’approches utiles pour la personnalisation, la recommandation produit et l’aide à la décision.</p>
+            </div>
+          </article>
+
+          <article class="card project-card">
+            <span class="project-badge">Produit numérique</span>
+            <h3>Bail-Express</h3>
+            <div>
+              <div class="project-row-title">Objectif réel</div>
+              <p>Faciliter l’accès au logement à travers une plateforme numérique mettant en relation les différents acteurs du marché locatif.</p>
+            </div>
+            <div>
+              <div class="project-row-title">Solution</div>
+              <p>Conception d’une application orientée produit, avec logique métier, structuration des données, gestion des annonces et potentiel d’intégration de systèmes intelligents.</p>
+            </div>
+            <div>
+              <div class="project-row-title">Technologies utilisées</div>
+              <div class="project-tech"><span>React Native</span><span>Expo</span><span>Supabase</span><span>Produit numérique</span></div>
+            </div>
+            <div>
+              <div class="project-row-title">Résultat</div>
+              <p>Projet entrepreneurial concret démontrant ma capacité à passer de l’idée à une solution numérique exploitable.</p>
+            </div>
+          </article>
+
+          <article class="card project-card">
+            <span class="project-badge">Reinforcement Learning</span>
+            <h3>Optimisation du trafic routier</h3>
+            <div>
+              <div class="project-row-title">Objectif réel</div>
+              <p>Réduire la congestion et améliorer la fluidité du trafic dans des environnements urbains complexes.</p>
+            </div>
+            <div>
+              <div class="project-row-title">Solution</div>
+              <p>Utilisation du reinforcement learning pour apprendre des stratégies de contrôle adaptées à la dynamique du trafic.</p>
+            </div>
+            <div>
+              <div class="project-row-title">Technologies utilisées</div>
+              <div class="project-tech"><span>Reinforcement Learning</span><span>Simulation</span><span>Systèmes intelligents</span></div>
+            </div>
+            <div>
+              <div class="project-row-title">Résultat</div>
+              <p>Approche d’optimisation orientée systèmes complexes et aide à la gestion intelligente de la mobilité.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="formations" class="section">
+      <div class="container">
+        <span class="eyebrow">Formations que je peux enseigner</span>
+        <h2 class="section-title">Des parcours structurés, progressifs et fortement orientés pratique</h2>
+        <p class="section-subtitle">
+          Les formations ci-dessous peuvent être adaptées selon le niveau des apprenants, l’objectif pédagogique et le temps disponible.
+        </p>
+
+        <div class="grid-3">
+          <article class="card training-card">
+            <h3>Introduction au Machine Learning</h3>
+            <div class="training-meta"><span>Débutant</span><span>Théorie + pratique</span><span>Mini-projets</span></div>
+            <p>Comprendre les bases de la prédiction, de la classification et du clustering, puis les appliquer sur des jeux de données concrets.</p>
+          </article>
+
+          <article class="card training-card">
+            <h3>Deep Learning avec TensorFlow</h3>
+            <div class="training-meta"><span>Intermédiaire</span><span>Réseaux neuronaux</span><span>Cas concrets</span></div>
+            <p>Découvrir les réseaux neuronaux, les CNN et les bases du deep learning à travers des implémentations guidées et progressives.</p>
+          </article>
+
+          <article class="card training-card">
+            <h3>NLP & intelligence artificielle appliquée aux langues</h3>
+            <div class="training-meta"><span>Intermédiaire</span><span>Texte</span><span>Low-resource</span></div>
+            <p>Introduire le traitement du langage, les données textuelles, la représentation linguistique et les enjeux des langues à faibles ressources.</p>
+          </article>
+
+          <article class="card training-card">
+            <h3>GenAI : RAG, Fine-Tuning & Agentic AI</h3>
+            <div class="training-meta"><span>Avancé</span><span>IA moderne</span><span>Systèmes complets</span></div>
+            <p>Comprendre les grandes briques de l’IA générative actuelle et apprendre à construire des solutions utiles et concrètes.</p>
+          </article>
+
+          <article class="card training-card">
+            <h3>Data Science appliquée</h3>
+            <div class="training-meta"><span>Débutant à intermédiaire</span><span>Données réelles</span><span>Décision</span></div>
+            <p>Explorer, préparer, analyser et modéliser les données dans une logique complète de résolution de problème.</p>
+          </article>
+
+          <article class="card training-card">
+            <h3>Data Engineering</h3>
+            <div class="training-meta"><span>Intermédiaire</span><span>Pipelines</span><span>Architecture de données</span></div>
+            <p>Comprendre comment les données circulent, sont transformées et préparées pour les analyses et les systèmes intelligents.</p>
+          </article>
+
+          <article class="card training-card">
+            <h3>Systèmes de recommandation</h3>
+            <div class="training-meta"><span>Intermédiaire</span><span>Personnalisation</span><span>Cas métier</span></div>
+            <p>Concevoir des mécanismes de recommandation, de scoring et de ranking orientés produits et usages réels.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="methodologie" class="section">
+      <div class="container">
+        <span class="eyebrow">Méthodologie pédagogique</span>
+        <h2 class="section-title">Une pédagogie centrée sur la compréhension et l’action</h2>
+        <p class="section-subtitle">
+          L’objectif est que l’apprenant ne se contente pas d’écouter. Il doit comprendre, manipuler, expérimenter et être capable de refaire seul.
+        </p>
+
+        <div class="card method-card">
+          <div class="method-list">
+            <div class="method-item">
+              <strong>1. Théorie expliquée simplement</strong>
+              Chaque notion est introduite avec des mots clairs, des intuitions concrètes et des exemples faciles à relier à la réalité.
+            </div>
+            <div class="method-item">
+              <strong>2. Passage rapide à la pratique</strong>
+              Les concepts sont immédiatement accompagnés d’implémentations, d’exercices guidés ou de mini-cas applicatifs.
+            </div>
+            <div class="method-item">
+              <strong>3. Progression par niveau</strong>
+              Les contenus sont structurés selon la difficulté, afin de ne pas perdre les débutants et de garder de la valeur pour les profils avancés.
+            </div>
+            <div class="method-item">
+              <strong>4. Formation orientée projet</strong>
+              Chaque module peut aboutir à un mini-projet ou un projet final permettant de consolider réellement les acquis.
+            </div>
+            <div class="method-item">
+              <strong>5. Objectif final : autonomie</strong>
+              Le but est que l’apprenant soit capable de comprendre la logique, manipuler les outils et reproduire le travail de manière autonome.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="github" class="section">
+      <div class="container">
+        <div class="grid-2">
+          <article class="card github-card">
+            <span class="eyebrow">GitHub</span>
+            <h2 class="section-title" style="margin:0; font-size:2rem;">Voir mes dépôts et expérimentations</h2>
+            <p class="muted">
+              Retrouvez mes projets, dépôts techniques, expérimentations et travaux personnels sur GitHub.
+            </p>
+            <a class="btn btn-primary" href="https://github.com/UrieThiombiano" target="_blank" rel="noopener noreferrer">Voir mon GitHub</a>
+          </article>
+
+          <article class="card contact-card" id="contact">
+            <span class="eyebrow">Contact</span>
+            <h2 class="section-title" style="margin:0; font-size:2rem;">Disponible pour entretien et formation</h2>
+            <div class="contact-list">
+              <div><strong>Email :</strong> urie.thiombiano@ensi-uma.tn</div>
+              <div><strong>Téléphone :</strong> +216 51 816 269</div>
+              <div><strong>Localisation :</strong> Ouagadougou / Tunisie</div>
+              <div><strong>Disponibilité :</strong> Formations en présentiel et accompagnement pratique</div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      © 2026 Urie Thiombiano — Portfolio professionnel | Intelligence artificielle • Data Science • Formation pratique
+    </div>
+  </footer>
+</body>
+</html>
